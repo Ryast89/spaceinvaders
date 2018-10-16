@@ -2,6 +2,7 @@
  * Space Invaders Main Program
  *
  */
+package spaceinvaders;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,8 +22,8 @@ public class Game extends Canvas {
         private boolean upPressed = false; // true if jumping
         private boolean jump = false;
         private boolean up = false;
-        private int lastJump = 0;
-        private long jumpingInterval = 500;
+        private long lastJump = 0;
+        private long jumpingInterval = 2000;
         private boolean gameRunning = true;
         private ArrayList entities = new ArrayList(); // list of entities
                                                       // in game
@@ -102,7 +103,7 @@ public class Game extends Canvas {
     	 */
     	private void initEntities() {
               // create the ship and put in center of screen
-              ship = new ShipEntity(this, "sprites/ship.gif", 480, 960);
+              ship = new ShipEntity(this, "sprites/ship.gif", 0, 960);
               entities.add(ship);
     
               // create a block of aliens (5x12)
@@ -171,9 +172,11 @@ public class Game extends Canvas {
         	 if ((System.currentTimeMillis() - lastJump) < jumpingInterval){
                  return;
                } // if
-        	 
+        	 System.out.println("testee");
         	 jump = true;
         	 up = true;
+        	 lastJump = System.currentTimeMillis();
+              
          }
          
         /* Attempt to fire.*/
@@ -251,9 +254,22 @@ public class Game extends Canvas {
            
            //jump 
            
-           if(jump = true && up == true) {
+           if(jump == true && (System.currentTimeMillis() - lastJump) < jumpingInterval) {
+        	   System.out.println(lastJump + " " + jumpingInterval);
+        	   if((System.currentTimeMillis() - lastJump) >= jumpingInterval/2) {
+        		   up = false;
+        	   }
+        	   if(up == true) {
+        		   ship.setVerticalMovement(-30);
+        		 
+        	   } else if (ship.getY() <= 960){
+        		   ship.setVerticalMovement(30);
+        	   } 
         	   
-           }
+           } else {
+    		   ship.setVerticalMovement(0);
+    		   jump = false;
+    	   }
            
            
            // remove dead entities
@@ -292,7 +308,7 @@ public class Game extends Canvas {
 
             
             //if up pressed, jump
-            if (upPressed) {
+            if (upPressed == true) {
             	jump();
             }
             
@@ -300,9 +316,6 @@ public class Game extends Canvas {
             if (firePressed) {
               tryToFire();
             } // if
-
-            // pause
-            try { Thread.sleep(100); } catch (Exception e) {}
 
           } // while
 
@@ -362,6 +375,7 @@ public class Game extends Canvas {
                   
                   if (e.getKeyCode() == KeyEvent.VK_UP) {
                     upPressed = true;
+                 
                     } // if
 
 		} // keyPressed

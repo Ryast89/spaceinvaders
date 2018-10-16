@@ -2,6 +2,7 @@
  * March 27, 2006
  * Represents player's ship
  */
+package spaceinvaders;
 public class ShipEntity extends Entity {
 
   private Game game; // the game in which the ship exists

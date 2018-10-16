@@ -2,6 +2,7 @@
  * March 27, 2006
  * Represents one of the aliens
  */
+package spaceinvaders;
 public class AlienEntity extends Entity {
 
   private double moveSpeed = 75; // horizontal speed

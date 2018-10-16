@@ -4,7 +4,7 @@
  * once, but to be used in many different places.  For example, one
  * copy of alien.gif can be used over and over.
  */
- 
+ package spaceinvaders;
  import java.awt.Graphics;
  import java.awt.Image;
  

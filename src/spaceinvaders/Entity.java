@@ -2,7 +2,7 @@
  * An entity is any object that appears in the game.
  * It is responsible for resolving collisions and movement.
  */
- 
+ package spaceinvaders;
  import java.awt.*;
  
  public abstract class Entity {

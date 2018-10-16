@@ -2,6 +2,7 @@
  * March 27, 2006
  * Represents player's ship
  */
+package spaceinvaders;
 public class ShotEntity extends Entity {
 
   private double moveSpeed = -300; // vert speed shot moves

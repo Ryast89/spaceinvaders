@@ -2,7 +2,7 @@
  * Manages the sprites in the game.  
  * Caches them for future use.
  */
- 
+ package spaceinvaders;
  import java.awt.*;
  import java.io.IOException;
  import java.net.URL;
